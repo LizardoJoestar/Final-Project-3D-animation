@@ -3,9 +3,10 @@
 //ENVIRONMENT
 var scene, camera, renderer;
 //ORBIT VARIABLES:
-var earthOrbitRadius = 500;
-var moonOrbitRadius = 100;
+var earthOrbitRadius = 1000;
+var moonOrbitRadius = 200;
 var date;
+const orbitSpeed = 0.0005;
 //SUN MESH:
 var sunGeometry, sunMaterial, sunMesh;
 //EARTH MESH:
@@ -144,25 +145,29 @@ function initPointLight()
 
 function update()
 {
-  date = Date.now() * 0.0005;
-  /*
-  if (pointLight != undefined)
+  date = Date.now() * orbitSpeed;
+
+  //Please make sure that both meshes
+  //were declared above inside their functions ^^^
+  //Earth object:
+  if (earthMesh != undefined)
   {
-    pointLight.position.set
-    (
-      Math.cos(date) * orbitRadius,
+    earthMesh.position.set(
+      Math.cos(date) * earthOrbitRadius,
       0,
-      Math.sin(date) * orbitRadius
+      Math.sin(date) * earthOrbitRadius
     );
   }
 
-  sunMesh.position.set
-  (
-    Math.cos(date) * orbitRadius,
-    0,
-    Math.sin(date) * orbitRadius
-  );
-  */
+  //Moon object:
+  if (moonMesh != undefined)
+  {
+    moonMesh.position.set(
+      Math.cos(date) * moonOrbitRadius,
+      0,
+      Math.sin(date) * moonOrbitRadius
+    );
+  }
 }
 
 function render()
