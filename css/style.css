@@ -1,0 +1,29 @@
+body {
+  background-color: black;
+  color: green;
+  font-family: monospace;
+}
+
+.title-centered {
+  text-align: center;
+}
+
+.div-button {
+  padding: 100px;
+  text-align: center;
+}
+
+.button {
+  padding: 40px;
+  width: 50%;
+  font-family: monospace;
+  font-weight: 900;
+  font-size: 30px;
+  background-color: green;
+  border-color: grey;
+}
+
+.list-centered {
+  text-align: center;
+  font-size: 20px;
+}
