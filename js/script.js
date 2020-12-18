@@ -1,3 +1,4 @@
+//Testing github commit
 //global variables>>>>>>>>>
 //ENVIRONMENT
 var scene, camera, renderer;
@@ -29,8 +30,8 @@ window.addEventListener( 'resize', function ()
   camera.aspect = width / height;
   camera.updateProjectionMatrix();
 });
-//no, ese no
-//ok
+
+
 function init()
 {
   scene = new THREE.Scene();
