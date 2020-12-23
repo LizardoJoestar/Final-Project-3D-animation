@@ -1,4 +1,4 @@
-//Testing github commit
+//jshint esversion: 6
 //global variables>>>>>>>>>
 //ENVIRONMENT
 var scene, camera, renderer;
@@ -54,7 +54,7 @@ function init()
 function initCamera()
 {
   camera = new THREE.PerspectiveCamera(75, WIDTH / HEIGHT, 0.1, 50000);
-  camera.position.z = 200
+  camera.position.z = 200;
   camera.lookAt(scene.position);
 }
 
