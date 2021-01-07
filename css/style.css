@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css?family=Coustard');
 body {
   !--background-color: black;
-  background-image: url('earth-wallp.jpg');
+  background-image: url('../img/menu/earth-wallp.jpg');
   color: white;
   font-family: "Coustard", serif;
   background-position: center center;
