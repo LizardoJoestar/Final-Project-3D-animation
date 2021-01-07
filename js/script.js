@@ -2,6 +2,8 @@
 //global variables>>>>>>>>>
 //ENVIRONMENT
 var scene, camera, renderer;
+var WIDTH = window.innerWidth;
+var HEIGHT = window.innerHeight;
 //ORBIT VARIABLES:
 const EARTH_ORBIT_RADIUS = 1000;
 const MOON_ORBIT_RADIUS = 200;
@@ -17,9 +19,6 @@ var moonGeometry, moonMaterial, moonMesh;
 var pointLight;
 //TEXTURES:
 var textureEarth, textureMoon;
-
-var WIDTH = window.innerWidth;
-var HEIGHT = window.innerHeight;
 
 
 //updating viewport on browser window resize
