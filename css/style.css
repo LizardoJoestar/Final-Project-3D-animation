@@ -1,29 +1,95 @@
+
+
+@import url('https://fonts.googleapis.com/css?family=Coustard');
 body {
-  background-color: black;
-  color: green;
-  font-family: monospace;
+  !--background-color: black;
+  background-image: url('earth-wallp.jpg');
+  color: white;
+  font-family: "Coustard", serif;
+  background-position: center center;
+
+
+
 }
+
 
 .title-centered {
   text-align: center;
 }
 
 .div-button {
-  padding: 100px;
+  padding: 50px;
   text-align: center;
 }
 
 .button {
+  background-color: black;
+     color: white;
+     border: 2px solid #33ccff;
+
   padding: 40px;
   width: 50%;
-  font-family: monospace;
-  font-weight: 900;
+font-family: "Coustard", serif;
+  font-weight: 800;
   font-size: 30px;
-  background-color: green;
-  border-color: grey;
+
+  border-radius: 12px;
+}
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: 'Renderizar';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -10px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 210px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
 }
 
 .list-centered {
   text-align: center;
   font-size: 20px;
+}
+
+p {
+  animation: move 1s;
+  -webkit-animation: move 3s;
+}
+
+@keyframes move {
+  from {
+  top:  200%;
+    width: 200%;
+  }
+
+  to {
+    bottom: 100%;
+    width: 100%;
+  }
+}
+
+@-webkit-keyframes move {
+  from {
+    margin-top: 0%;
+    width: 100%;
+  }
+
+  to {
+    bottom: 10%;
+    width: 0;
+  }
 }
