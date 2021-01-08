@@ -98,14 +98,15 @@ function initSun()
 function initEarth()
 {
   earthGeometry = new THREE.SphereGeometry(100,32,32);
-  earthMaterial = new THREE.MeshBasicMaterial({textureEarth, side: TTHREE.Double});
+  textureEarth = new THREE.TextureLoader().load('img/earth-map.jpg');
+  earthMaterial = new THREE.MeshPhongMaterial( { map: textureEarth} );
   earthMesh = new THREE.Mesh(earthGeometry, earthMaterial);
   scene.add(earthMesh);
 }
 
 function initMoon()
 {
- moonMesh = earthMesh
+ 
 }
 
 function initSkysphere()
