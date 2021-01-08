@@ -108,7 +108,7 @@ function initEarth()
 function initMoon()
 {
   moonGeometry = new THREE.SphereGeometry(100,32,32);
-  textureMoon = new THREE.TextureLoader().load('img/moon.png');
+  textureMoon = new THREE.TextureLoader().load('img/moon.jpg');
   moonMaterial = new THREE.MeshPhongMaterial( { map: textureMoon} );
   moonMesh = new THREE.Mesh(moonGeometry, moonMaterial);
   scene.add(moonMesh);
