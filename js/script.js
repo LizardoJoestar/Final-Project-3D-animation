@@ -8,6 +8,7 @@ var HEIGHT = window.innerHeight;
 const EARTH_ORBIT_RADIUS = 1000;
 const MOON_ORBIT_RADIUS = 200;
 const ORBIT_SPEED = 0.0005;
+const EARTH_ROTATION_SPEED = 0.01;
 var date;
 //SUN MESH:
 var sunGeometry, sunMaterial, sunMesh;
@@ -106,7 +107,7 @@ function initEarth()
 
 function initMoon()
 {
- 
+
 }
 
 function initSkysphere()
@@ -152,6 +153,7 @@ function update()
 
   //Please make sure that both meshes
   //were declared above inside their functions ^^^
+  //(I already know there's a conditional for that. It's just to make sure!)
   //Earth object:
   if (earthMesh != undefined)
   {
@@ -160,6 +162,9 @@ function update()
       0,
       Math.sin(date) * EARTH_ORBIT_RADIUS
     );
+
+    //apparently it's the y axis to rotate as normal? uh
+    earthMesh.rotation.y += EARTH_ROTATION_SPEED;
   }
 
   //Moon object:
