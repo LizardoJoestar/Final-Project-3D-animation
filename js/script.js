@@ -7,8 +7,8 @@ var HEIGHT = window.innerHeight;
 //ORBIT VARIABLES:
 const EARTH_ORBIT_RADIUS = 1000;
 const MOON_ORBIT_RADIUS = 200;
-const EARTH_ORBIT_SPEED = 0.0005;
-const MOON_ORBIT_SPEED = 0.005;
+const EARTH_ORBIT_SPEED = 0.0001;
+const MOON_ORBIT_SPEED = 0.002;
 const EARTH_ROTATION_SPEED = 0.01;
 var date1, date2;
 //SUN MESH:
@@ -55,7 +55,7 @@ function init()
 function initCamera()
 {
   camera = new THREE.PerspectiveCamera(75, WIDTH / HEIGHT, 0.1, 50000);
-  camera.position.z = 200;
+  camera.position.z = 300;
   camera.lookAt(scene.position);
 }
 
@@ -64,7 +64,7 @@ function initRenderer()
   renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
   renderer.setSize( WIDTH, HEIGHT);
   renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = THREE.PCFShadowMap;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 }
 
 function initOrbitControls()
@@ -91,7 +91,7 @@ function insertInfo()
 
 function initSun()
 {
-  sunGeometry = new THREE.SphereGeometry(100,32,32);
+  sunGeometry = new THREE.SphereGeometry(200,60,60);
   sunMaterial = new THREE.MeshBasicMaterial( { color: 0xFFFFFF } );
   sunMesh = new THREE.Mesh(sunGeometry, sunMaterial);
   scene.add(sunMesh);
@@ -99,7 +99,7 @@ function initSun()
 
 function initEarth()
 {
-  earthGeometry = new THREE.SphereGeometry(100,32,32);
+  earthGeometry = new THREE.SphereGeometry(40,32,32);
   textureEarth = new THREE.TextureLoader().load('img/earth-map.jpg');
   earthMaterial = new THREE.MeshPhongMaterial( { map: textureEarth} );
   earthMesh = new THREE.Mesh(earthGeometry, earthMaterial);
@@ -110,7 +110,7 @@ function initEarth()
 
 function initMoon()
 {
-  moonGeometry = new THREE.SphereGeometry(40,32,32);
+  moonGeometry = new THREE.SphereGeometry(10,32,32);
   textureMoon = new THREE.TextureLoader().load('img/moon.jpg');
   moonMaterial = new THREE.MeshPhongMaterial( { map: textureMoon} );
   moonMesh = new THREE.Mesh(moonGeometry, moonMaterial);
