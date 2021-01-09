@@ -7,9 +7,10 @@ var HEIGHT = window.innerHeight;
 //ORBIT VARIABLES:
 const EARTH_ORBIT_RADIUS = 1000;
 const MOON_ORBIT_RADIUS = 200;
-const ORBIT_SPEED = 0.0005;
+const EARTH_ORBIT_SPEED = 0.0005;
+const MOON_ORBIT_SPEED = 0.005;
 const EARTH_ROTATION_SPEED = 0.01;
-var date;
+var date1, date2;
 //SUN MESH:
 var sunGeometry, sunMaterial, sunMesh;
 //EARTH MESH:
@@ -102,16 +103,20 @@ function initEarth()
   textureEarth = new THREE.TextureLoader().load('img/earth-map.jpg');
   earthMaterial = new THREE.MeshPhongMaterial( { map: textureEarth} );
   earthMesh = new THREE.Mesh(earthGeometry, earthMaterial);
+  earthMesh.castShadow = true;
+  earthMesh.receiveShadow = true;
   scene.add(earthMesh);
 }
 
 function initMoon()
 {
-  moonGeometry = new THREE.SphereGeometry(100,32,32);
+  moonGeometry = new THREE.SphereGeometry(40,32,32);
   textureMoon = new THREE.TextureLoader().load('img/moon.jpg');
   moonMaterial = new THREE.MeshPhongMaterial( { map: textureMoon} );
   moonMesh = new THREE.Mesh(moonGeometry, moonMaterial);
-  scene.add(moonMesh);
+  moonMesh.castShadow = true;
+  moonMesh.receiveShadow = true;
+  earthMesh.add(moonMesh);
 }
 
 function initSkysphere()
@@ -147,14 +152,19 @@ function initSkybox()
 function initPointLight()
 {
   pointLight = new THREE.PointLight(0xFFFFFF,1);
+  pointLight.castShadow = true;
+  pointLight.shadow.camera.near = 1;
+  pointLight.shadow.camera.far = 5000;
+  pointLight.shadow.fov = 90; //fov = field of view, here 90°
+  pointLight.shadow.bias = 0.001;
   scene.add(pointLight);
 }
 
 
 function update()
 {
-  date = Date.now() * ORBIT_SPEED;
-
+  date1 = Date.now() * EARTH_ORBIT_SPEED;
+  date2 = Date.now() * MOON_ORBIT_SPEED;
   //Please make sure that both meshes
   //were declared above inside their functions ^^^
   //(I already know there's a conditional for that. It's just to make sure!)
@@ -162,9 +172,9 @@ function update()
   if (earthMesh != undefined)
   {
     earthMesh.position.set(
-      Math.cos(date) * EARTH_ORBIT_RADIUS,
+      Math.cos(date1) * EARTH_ORBIT_RADIUS,
       0,
-      Math.sin(date) * EARTH_ORBIT_RADIUS
+      Math.sin(date1) * EARTH_ORBIT_RADIUS
     );
 
     //apparently it's the y axis to rotate as normal? uh
@@ -175,9 +185,9 @@ function update()
   if (moonMesh != undefined)
   {
     moonMesh.position.set(
-      Math.cos(date) * MOON_ORBIT_RADIUS,
+      Math.cos(date2) * MOON_ORBIT_RADIUS,
       0,
-      Math.sin(date) * MOON_ORBIT_RADIUS
+      Math.sin(date2) * MOON_ORBIT_RADIUS
     );
   }
 }
