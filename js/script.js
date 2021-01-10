@@ -43,7 +43,7 @@ function init()
   //insertInfo();
   initCamera();
   initRenderer();
-  initOrbitControls();
+  initFlyControls();
   initStats();
   initSun();
   initPointLight();
@@ -69,7 +69,7 @@ function initRenderer()
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 }
 
-function initOrbitControls()
+function initFlyControls()
 {
   controls = new THREE.FlyControls( camera, renderer.domElement );
   controls.movementSpeed = 1000;
