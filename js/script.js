@@ -1,7 +1,7 @@
 //jshint esversion: 6
 //global variables>>>>>>>>>
 //ENVIRONMENT
-var scene, camera, renderer;
+var scene, camera, renderer, stats;
 var WIDTH = window.innerWidth;
 var HEIGHT = window.innerHeight;
 //ORBIT VARIABLES:
@@ -10,7 +10,8 @@ const MOON_ORBIT_RADIUS = 200;
 const EARTH_ORBIT_SPEED = 0.0001;
 const MOON_ORBIT_SPEED = 0.002;
 const EARTH_ROTATION_SPEED = 0.01;
-var date1, date2;
+const clock = new THREE.Clock();
+var date1, date2, delta;
 //SUN MESH:
 var sunGeometry, sunMaterial, sunMesh;
 //EARTH MESH:
@@ -39,15 +40,16 @@ function init()
   scene = new THREE.Scene();
   scene.background = new THREE.Color( 0x545454 );
 
-  insertInfo();
+  //insertInfo();
   initCamera();
   initRenderer();
   initOrbitControls();
+  initStats();
   initSun();
   initPointLight();
   initEarth();
   initMoon();
-  initSkybox();
+  initSkysphere();
 
   document.body.appendChild( renderer.domElement );
 }
@@ -69,7 +71,18 @@ function initRenderer()
 
 function initOrbitControls()
 {
-  controls = new THREE.OrbitControls( camera, renderer.domElement );
+  controls = new THREE.FlyControls( camera, renderer.domElement );
+  controls.movementSpeed = 1000;
+	controls.domElement = renderer.domElement;
+	controls.rollSpeed = Math.PI / 24;
+	controls.autoForward = false;
+	controls.dragToLook = false;
+}
+
+function initStats()
+{
+  stats = new Stats();
+  document.body.appendChild(stats.dom);
 }
 
 function insertInfo()
@@ -122,7 +135,7 @@ function initMoon()
 function initSkysphere()
 {
   var geometry = new THREE.SphereGeometry(30000,32,32);
-  var texture1 = new THREE.TextureLoader().load('img/universe.png');
+  var texture1 = new THREE.TextureLoader().load('img/starmap_8k.jpg');
   var mat1 = new THREE.MeshBasicMaterial( { map: texture1, side: THREE.DoubleSide } );
   var skysphere = new THREE.Mesh(geometry, mat1);
   scene.add(skysphere);
@@ -163,6 +176,8 @@ function initPointLight()
 
 function update()
 {
+  delta = clock.getDelta(); //delta is the elapsed number of seconds
+  controls.update(delta); //delta is necessary for FlyControls
   date1 = Date.now() * EARTH_ORBIT_SPEED;
   date2 = Date.now() * MOON_ORBIT_SPEED;
   //Please make sure that both meshes
@@ -204,6 +219,10 @@ function GameLoop()
   update();
 
   render();
+  if (stats != undefined)
+  {
+    stats.update();
+  }
 }
 
 init();
