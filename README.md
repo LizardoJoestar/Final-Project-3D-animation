@@ -2,7 +2,7 @@
 
 TEC, para la clase de Graficación.
 
-Como sabrán, mencioné que lo subiría a github. Para hacer sus cambios por favor creen un nuevo branch propio, agregan o quitan lo que deban, y luego hagan un pull request. Yo lo estaré revisando antes de agregarlo al branch principal (main).lol
+Como sabrán, mencioné que lo subiría a github. Para hacer sus cambios por favor creen un nuevo branch propio, agregan o quitan lo que deban, y luego hagan un pull request. Yo lo estaré revisando antes de agregarlo al branch principal (main).
 
 ==================Datos generales================================
 
